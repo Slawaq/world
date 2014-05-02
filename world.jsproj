@@ -50,15 +50,6 @@
     <PackageCertificateKeyFile>world_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <AppxManifest Include="package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-    <Content Include="index.html" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\smalllogo.png" />
-    <Content Include="images\splashscreen.png" />
-    <Content Include="images\storelogo.png" />
-    <Content Include="css\default.css" />
     <Content Include="life\Simple.js" />
     <Content Include="main.js" />
     <Content Include="node_modules\extend.js" />
@@ -68,13 +59,9 @@
     <Content Include="world\resource\Corpse.js" />
     <Content Include="world\resource\Food.js" />
     <Content Include="world\World.js" />
-    <None Include="world_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.WinJS.1.0, Version=1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="js\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <!-- To modify your build process, add your task inside one of the targets below then uncomment

@@ -1,3 +1,4 @@
 ﻿/bin/
 /bld/
 /node_modules/
+*.jsproj.user
