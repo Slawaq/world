@@ -1,0 +1,31 @@
+{
+  "name": "world",
+  "version": "0.0.0",
+  "description": "Game world",
+  "main": "main.js",
+  "dependencies": {
+    "btoa": "~1.1.1",
+    "images": "~2.0.0",
+    "knockout": "~3.1.0",
+    "colors": "~0.6.2",
+    "ko": "~0.1.3",
+    "node-png": "~0.4.2",
+    "underscore": "~1.6.0",
+    "node-images": "~1.6.0",
+    "pngjs": "~0.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Slawaq/world.git"
+  },
+  "author": "slawaq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Slawaq/world/issues"
+  },
+  "homepage": "https://github.com/Slawaq/world"
+}
