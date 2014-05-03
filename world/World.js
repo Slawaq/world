@@ -12,6 +12,7 @@ var World = function (config) {
     this.area = this.generateArea();
     this.lifes = [];
     this.mustDead = [];
+    this.ticks = 0;
 }
 mixin(World.prototype, {
 
@@ -48,11 +49,11 @@ mixin(World.prototype, {
         life.identity(registredLife);
     },
 
-    nextTick: function() {
+    nextTick: function () {
+        this.ticks++;
         this.lifes.forEach(function(l) {
             l.life.nextTick();
         });
-        console.log("DIED ", this.mustDead.length, " LIFES");
         this.lifes = this.lifes
             .filter(function(l) {
                 return this.mustDead.indexOf(l) === -1;
@@ -60,8 +61,9 @@ mixin(World.prototype, {
         this.mustDead = this.mustDead.filter(function (rl) {
             rl.point.removeResource(rl.life);
             rl.point.addResource(new Corpse(rl.life));
+            console.log("Life #", rl.life.number," is dead on: ", rl.x, rl.y, ", on ", this.ticks, " tick");
             return false;
-        });
+        }, this);
     }
 
 });
@@ -73,6 +75,7 @@ var RegistredLife = function (world, life, point, x, y) {
     this.x = x;
     this.y = y;
     this.point.addResource(life);
+    console.log("Life added to point[" + x + "][" + y + "] : ", this.point.hasExistResource(life));
 }
 mixin(RegistredLife.prototype, {
 

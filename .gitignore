@@ -2,3 +2,4 @@
 /bld/
 /node_modules/
 *.jsproj.user
+out.*

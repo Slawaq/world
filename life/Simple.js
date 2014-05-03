@@ -1,11 +1,19 @@
 ﻿var mixin = require('mixin');
+
+var Food = require("../world/resource/Food");
 var getRandomInt = function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+var index = 0;
+
 var Life = function () {
     this.name = "life1";
-    this.food = 10;
+    this.number = ++index;
+    this.foodReserve = [new Food(), new Food(), new Food(), new Food(), new Food(), new Food(), new Food(), new Food(), new Food(), new Food()];
+    this.maxFoodsCapacity = 20;
+    this.minFoodsCapacity = 10;
+    this.eatenFood = [];
 };
 mixin(Life.prototype, {
 
@@ -14,33 +22,49 @@ mixin(Life.prototype, {
         this.world = info.world;
     },
 
-    nextTick: function() {
-        var foods = this.info.point.getResources("food");
-        
-        if (resources) {
-            this.info.point.
-            console.log("life have food!", this.info.x, this.info.y);
-        } else {
-            this.goNext();
+    nextTick: function () {
+        if (this.foodReserve.length === 0)
+            this.die();
 
+        var food = this.foodReserve.pop();
+        this.eatenFood.push(food);
+
+        this.restoreFoodReserve();
+    },
+
+    restoreFoodReserve: function() {
+        var reserve = this.foodReserve;
+        var packedFoods = this.info.point.getResources("food");
+
+        if (reserve.length <= this.minFoodsCapacity) {
+            var takenFoods = 0;
+            packedFoods
+                .forEach(function(food) {
+                    try {
+                        if (reserve.length < this.maxFoodsCapacity) {
+                            food = food.unwrap();
+                            reserve.push(food);
+                            takenFoods++;
+                        }
+                    } catch (error) {
+                    }
+                }, this);
+            if (takenFoods == 0)
+                this.findFood();
+        } else {
+            this.findFood();
         }
     },
 
-    goNext: function () {
-        if (this.food == 0)
-            this.die();
-
+    findFood: function() {
         var acts = this.info.whereICanGoing();
         if (acts.length > 0) {
             var act = getRandomInt(0, acts.length - 1);
             acts[act]();
-            console.log("life doing next act");
         }
-        this.food--;
     },
 
     die: function () {
-        console.log("Life is dead on: ", this.info.x, this.info.y);
         this.info.die();
     }
 

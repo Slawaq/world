@@ -1,5 +1,4 @@
-﻿var Resources = require('./Resources').Resources;
-var mixin = require("mixin");
+﻿var mixin = require("mixin");
 var extend = require("extend");
 
 var Food = function() {

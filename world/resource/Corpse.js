@@ -1,5 +1,5 @@
 ﻿var Corpse = function(life) {
-    this.name = "Corpse";
+    this.name = "corpse";
     this.life = life;
 }
 
